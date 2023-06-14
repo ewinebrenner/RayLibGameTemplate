@@ -1,0 +1,21 @@
+file(
+ GLOB_RECURSE GAME_INC CONFIGURE_DEPENDS
+ RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+ *.h *.hpp
+)
+
+file(
+ GLOB_RECURSE GAME_SRC CONFIGURE_DEPENDS
+ RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+ *.c *.cpp
+)
+
+set(GAME_INC_DIR
+ ${CMAKE_CURRENT_SOURCE_DIR}
+ CACHE PATH "GAME INCLUDE SOURCE PATH"
+)
+
+add_executable(game ${GAME_SRC} ${GAME_INC})
+target_link_libraries(game PUBLIC raylib)
+target_include_directories(game PUBLIC ${raylib_INCLUDE_DIR})
+
